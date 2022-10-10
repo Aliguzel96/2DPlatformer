@@ -1803,9 +1803,10 @@ GameObject:
   m_Component:
   - component: {fileID: 815438848}
   - component: {fileID: 815438847}
+  - component: {fileID: 815438849}
   m_Layer: 0
   m_Name: BitirmeRozeti
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1870,13 +1871,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815438846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.79, y: 0.91, z: 0}
+  m_LocalPosition: {x: -6.13, y: -3.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &815438849
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815438846}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.735
 --- !u!1 &822566659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061620438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.751108, y: -3.09, z: 0}
+  m_LocalPosition: {x: -8.95, y: -3.09, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2369,6 +2386,8 @@ MonoBehaviour:
   arrowCount: 5
   arrowNumberText: {fileID: 219924930}
   dieMusic: {fileID: 8300000, guid: ffed6d5d599566144a60c8deffb3ba66, type: 3}
+  winPanel: {fileID: 2094012543}
+  losePanel: {fileID: 1546089924}
 --- !u!95 &1061620444
 Animator:
   serializedVersion: 4

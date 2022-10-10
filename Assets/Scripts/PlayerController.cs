@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int arrowCount;
     [SerializeField] TextMeshProUGUI arrowNumberText;
     [SerializeField] AudioClip dieMusic;
-
+    [SerializeField] GameObject winPanel, losePanel;
 
     void Start()
     {
@@ -118,14 +118,23 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    #region ölüm animasyonu
+    #region ölüm animasyonu ve win ekranýnýn açýlmasý
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if(collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obstacle"))
         {
+            GetComponent<TimeController>().enabled = false;//karakter ölünce lose paneli açýlana kadar süre de bitebiliyor
+                                                           //ve bu þekilde karakter 2 defa ölüm animasyonu yaþýyor, bu özellik ile bunun önüne geçmiþ olduk
             Die();
+        }
+        else if(collision.gameObject.CompareTag("Finish"))
+        {
+            /*winPanel.active = true;
+            Time.timeScale = 0;//Gerçek zamaný temsil eder 0'a eþitleyince oyundaki zamaný durdurur (oyundaki her þey durur)*/
+
+            StartCoroutine(Wait(true));//Zamanlayýcý baþlat
         }
 
     }
@@ -136,15 +145,28 @@ public class PlayerController : MonoBehaviour
         GameObject.Find("Sound Controller").GetComponent<AudioSource>().PlayOneShot(dieMusic);//ölüm sesini bir defa çaldýr
         myAnimator.SetFloat("Speed", 0);//ölünce hýz sýfýrlansýn
         myAnimator.SetTrigger("Die");//ölüm anim çalýþsýn
-
         myRigidbody.constraints = RigidbodyConstraints2D.FreezePosition; //x ve y eksenlerindeki haraketleri dondur
-
-        
         enabled = false; //bu scripti etkisiz kýl (script içerisinde sað ve sola basýnca karakter scale bazlý olarak dönüyordu ve ölüm anim yarým kalýyordu)
-        
+        StartCoroutine(Wait(false));
     }
 
     #endregion
+
+    IEnumerator Wait(bool win)//bekleme fonksiyonu
+    {
+        yield return new WaitForSecondsRealtime(2f); //2 sn bekle
+        Time.timeScale = 0;
+
+
+        if (win)
+        {
+            winPanel.SetActive(true);
+        }
+        else
+        {
+            losePanel.SetActive(true);
+        }
+    }
 
 
 
