@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     {
         attacked = false;
         myRigidbody = GetComponent<Rigidbody2D>();
-        jumpForce = 5;
         defaultLocalScale = transform.localScale;
         currentAttackTimer = 0;
         defaultAttackTimer = 1;
