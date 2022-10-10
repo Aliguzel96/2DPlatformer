@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Die()
+    public void Die()
     {
         GameObject.Find("Sound Controller").GetComponent<AudioSource>().clip = null;//karakter ölünce oyun sesini kapat
         GameObject.Find("Sound Controller").GetComponent<AudioSource>().PlayOneShot(dieMusic);//ölüm sesini bir defa çaldýr
