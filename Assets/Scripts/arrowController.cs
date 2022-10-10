@@ -21,4 +21,9 @@ public class arrowController : MonoBehaviour
                     }
         }
     }
+
+    private void OnBecameInvisible()//oyun içerisinde görünmez olduðu anda çalýþýr (oklar sahneden çýkýnca yok olsun)
+    {
+        Destroy(gameObject);
+    }
 }

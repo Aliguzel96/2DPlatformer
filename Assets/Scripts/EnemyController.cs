@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
 
         myBody = GetComponent<Rigidbody2D>();
         totalEnemyNumber++;
-        Debug.Log("Dusman ismi: " +gameObject.name + " oluþtu -" + " oyundaki toplam düþman sayýsý: " + totalEnemyNumber);
+        //Debug.Log("Dusman ismi: " +gameObject.name + " oluþtu -" + " oyundaki toplam düþman sayýsý: " + totalEnemyNumber);
 
 
     }
