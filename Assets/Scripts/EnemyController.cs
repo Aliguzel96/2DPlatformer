@@ -9,15 +9,19 @@ public class EnemyController : MonoBehaviour
     private float width;
     private Rigidbody2D myBody;
     [SerializeField] LayerMask engel;//raycastin etkileþime girmesini istediðimiz layer'i belirledik
+    private static int totalEnemyNumber = 0; //static anahtar kelimesi class'a ait bir deðiþkeni simgeler, bu class'tan kaç tane obje türediðini tutar
+                                             //Sýnýf ile ilgili sayý iþlemlerini static ile yapabiliriz
 
     void Start()
     {
+
         width = GetComponent<SpriteRenderer>().bounds.extents.x; //mevcut sprite'ýn köþelerinin arasýnda kalan x ekseninin yarýsýný verir
                                                                  //Bu bize sprite'ýn yarýsýný bulmamýz için gerekecek çünkü ýþýný objenin en uç noktalarýna çizdirmemiz gerekiyor
                                                                  //mevcut iþlemle x ekseninin yarý çapýný aldýk þimdi de bu deðeri 2'ye bölersek istediðimiz sonuca ulaþabiliriz
 
         myBody = GetComponent<Rigidbody2D>();
-        
+        totalEnemyNumber++;
+        Debug.Log("Dusman ismi: " +gameObject.name + " oluþtu -" + " oyundaki toplam düþman sayýsý: " + totalEnemyNumber);
 
 
     }
