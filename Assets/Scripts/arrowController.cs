@@ -17,6 +17,7 @@ public class arrowController : MonoBehaviour
                     {
                         Destroy(collision.gameObject); //çarptýðý düsmaný yok et
                         Instantiate(effect, collision.gameObject.transform.position, Quaternion.identity);//ölünce efekt çýksýn
+                      
                     }
         }
     }

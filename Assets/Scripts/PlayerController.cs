@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private float currentAttackTimer;
     private float defaultAttackTimer;
     private Animator myAnimator;
+    [SerializeField] int arrowCount;
+    [SerializeField] TextMeshProUGUI arrowNumberText;
+    [SerializeField] AudioClip dieMusic;
 
 
     void Start()
@@ -29,6 +34,7 @@ public class PlayerController : MonoBehaviour
         currentAttackTimer = 0;
         defaultAttackTimer = 1;
         myAnimator = GetComponent<Animator>();
+        arrowNumberText.text = arrowCount.ToString();
 
 
     }
@@ -62,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && arrowCount > 0)//ek olarak ok sayacýný ekledik
         {
             if (attacked == false)
             {
@@ -94,7 +100,7 @@ public class PlayerController : MonoBehaviour
     void Fire()
     {
         GameObject okumuz = Instantiate(arrow, arrowPoint.transform.position, Quaternion.identity);
-
+        okumuz.transform.parent = GameObject.Find("Arrows").transform;//oyun içerisinde oluþan ok clonlarýný tek bir parent altýnda topladýk
 
         if (transform.localScale.x > 0) //karakter saða hareket ediyorsa, ok da ayný yönde çýksýn
         {
@@ -107,7 +113,8 @@ public class PlayerController : MonoBehaviour
             okumuz.transform.localScale = new Vector3(-okumuzScale.x, okumuzScale.y, okumuzScale.z);
             okumuz.GetComponent<Rigidbody2D>().velocity = new Vector2(-5f, 0f);
         }
-
+        arrowCount--;
+        arrowNumberText.text = arrowCount.ToString();//canvas içerisinde arrow label'ini set ettik
 
     }
 
@@ -125,6 +132,8 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
+        GameObject.Find("Sound Controller").GetComponent<AudioSource>().clip = null;//karakter ölünce oyun sesini kapat
+        GameObject.Find("Sound Controller").GetComponent<AudioSource>().PlayOneShot(dieMusic);//ölüm sesini bir defa çaldýr
         myAnimator.SetFloat("Speed", 0);//ölünce hýz sýfýrlansýn
         myAnimator.SetTrigger("Die");//ölüm anim çalýþsýn
 
