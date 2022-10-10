@@ -112,8 +112,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    #region ölüm animasyonu
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
 
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Die();
+        }
+
+    }
+
+    void Die()
+    {
+        myAnimator.SetFloat("Speed", 0);//ölünce hýz sýfýrlansýn
+        myAnimator.SetTrigger("Die");//ölüm anim çalýþsýn
+
+        myRigidbody.constraints = RigidbodyConstraints2D.FreezePosition; //x ve y eksenlerindeki haraketleri döndür
+
+        enabled = false; //bu scripti etkisiz kýl (script içerisinde sað ve sola basýnca karakter scale bazlý olarak dönüyordu ve ölüm anim yarým kalýyordu)
+        
+    }
+
+    #endregion
 
 
 
