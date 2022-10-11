@@ -13,18 +13,22 @@ public class levelManager : MonoBehaviour
     private void Start()
     {
         scoreText = GameObject.Find("ScoreValue").GetComponent<TextMeshProUGUI>();
+        Load();
     }
     public void NextLevel()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Save();
+        Load();
+       
     }
-    
+
     public void Restart()
     {
         Time.timeScale = 1;//oyun bitince zaman duruyordu restart deyince yeniden baþlamasý gerekiyor
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    
+        
     }
 
     public void ClosePanel(string parentName)
@@ -38,5 +42,17 @@ public class levelManager : MonoBehaviour
         int scoreValue = int.Parse(scoreText.text);
         scoreValue += score;
         scoreText.text = scoreValue.ToString();
+    }
+
+    public void Load()
+    {
+        SaveSystem.LoadPlayer();
+        scoreText.text = Data.score.ToString();
+    }
+
+    public void Save()
+    {
+        Data.score = int.Parse(scoreText.text);
+        SaveSystem.SavePlayer();
     }
 }

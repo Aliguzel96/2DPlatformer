@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
         defaultAttackTimer = 1;
         myAnimator = GetComponent<Animator>();
         arrowNumberText.text = arrowCount.ToString();
+        
+
 
 
     }
@@ -199,6 +201,8 @@ public class PlayerController : MonoBehaviour
 
     }
     #endregion
+
+    
 
 }
 
