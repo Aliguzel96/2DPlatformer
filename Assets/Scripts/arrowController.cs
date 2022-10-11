@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class arrowController : MonoBehaviour
 {
 
     [SerializeField] GameObject effect;
+    
+
+
+  
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,11 +19,15 @@ public class arrowController : MonoBehaviour
         {
             Destroy(gameObject);//oku yok et
                 if(collision.gameObject.CompareTag("Enemy"))//çarptýðý nesne düþman ise
-                    {
-                        Destroy(collision.gameObject); //çarptýðý düsmaný yok et
-                        Instantiate(effect, collision.gameObject.transform.position, Quaternion.identity);//ölünce efekt çýksýn
-                      
-                    }
+             {
+
+                Destroy(collision.gameObject); //çarptýðý düsmaný yok et
+
+                GameObject.Find("LevelManager").GetComponent<levelManager>().AddScore(100);
+                Instantiate(effect, collision.gameObject.transform.position, Quaternion.identity);//ölünce efekt çýksýn
+               
+
+            }
         }
     }
 

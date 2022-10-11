@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
         {
             /*winPanel.active = true;
             Time.timeScale = 0;//Gerçek zamaný temsil eder 0'a eþitleyince oyundaki zamaný durdurur (oyundaki her þey durur)*/
-
+            Destroy(collision.gameObject);//çarptýðý nesneyi yok et
             StartCoroutine(Wait(true));//Zamanlayýcý baþlat
         }
 
@@ -145,7 +145,8 @@ public class PlayerController : MonoBehaviour
         GameObject.Find("Sound Controller").GetComponent<AudioSource>().PlayOneShot(dieMusic);//ölüm sesini bir defa çaldýr
         myAnimator.SetFloat("Speed", 0);//ölünce hýz sýfýrlansýn
         myAnimator.SetTrigger("Die");//ölüm anim çalýþsýn
-        myRigidbody.constraints = RigidbodyConstraints2D.FreezePosition; //x ve y eksenlerindeki haraketleri dondur
+        //myRigidbody.constraints = RigidbodyConstraints2D.FreezePosition; //x ve y eksenlerindeki haraketleri dondur
+        myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll; //hem rotation hem de position özelliklerini kapat
         enabled = false; //bu scripti etkisiz kýl (script içerisinde sað ve sola basýnca karakter scale bazlý olarak dönüyordu ve ölüm anim yarým kalýyordu)
         StartCoroutine(Wait(false));
     }

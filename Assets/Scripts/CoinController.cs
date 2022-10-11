@@ -24,9 +24,10 @@ public class CoinController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            int score = int.Parse(scoreText.text);//skor text'ini int'e çevirip score deðiþkenine atadýk
-            score += 50;
-            scoreText.text = score.ToString();
+            //int score = int.Parse(scoreText.text);//skor text'ini int'e çevirip score deðiþkenine atadýk
+            //score += 50;
+            //scoreText.text = score.ToString();
+            GameObject.Find("LevelManager").GetComponent<levelManager>().AddScore(100);
             Destroy(gameObject);
         }
     }
